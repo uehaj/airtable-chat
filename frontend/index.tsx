@@ -1,9 +1,10 @@
 import {initializeBlock} from '@airtable/blocks/ui';
 import React from 'react';
+import App from './components/App';
 
-function HelloWorldTypescriptApp() {
+function ChatApp() {
     // YOUR CODE GOES HERE
-    return <div>Hello world 🚀</div>;
+    return <App/>;
 }
 
-initializeBlock(() => <HelloWorldTypescriptApp />);
+initializeBlock(() => <ChatApp />);
