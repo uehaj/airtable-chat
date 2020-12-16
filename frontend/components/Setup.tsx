@@ -8,7 +8,6 @@ import {
   Box,
   useBase,
 } from '@airtable/blocks/ui';
-import { FieldType } from '@airtable/blocks/models';
 import useConfig from '../useConfig';
 
 export default function Setup() {
@@ -19,13 +18,20 @@ export default function Setup() {
   return (
     <>
       <Box padding={3} borderBottom="thick">
-        <FormField label="Table">
+        <FormField label="テーブル">
           <TablePickerSynced globalConfigKey="selectedTableId" />
         </FormField>
-        <FormField label="View">
+        <FormField label="ビュー">
           <ViewPickerSynced table={table} globalConfigKey="selectedViewId" />
         </FormField>
-        <FormField label="Message Field" marginBottom={0}>
+        <FormField label="Created byフィールド">
+          <FieldPickerSynced
+            table={table}
+            globalConfigKey="selectedCreatedByFieldId"
+            placeholder="Pick a 'created by' field..."
+          />
+        </FormField>
+        <FormField label="Messageフィールド" marginBottom={0}>
           <FieldPickerSynced
             table={table}
             globalConfigKey="selectedMessageFieldId"

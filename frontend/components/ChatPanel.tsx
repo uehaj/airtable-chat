@@ -9,13 +9,19 @@ import {
 import useConfig from '../useConfig';
 
 loadCSSFromString(`
+.base {
+  background-color: #34569b;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
 .balloon {
   position: relative;
   display: block;
-  margin: 1.5em 0;
-  padding: 7px 10px;
+  margin: 0.5rem 100px 1.0rem 10rem;
+  padding: 10px 10px 20px 10px;
   min-width: 120px;
   max-width: 100%;
+  margin-left: 20px;
   color: #555;
   font-size: 16px;
   background: #e0edff;
@@ -26,7 +32,8 @@ loadCSSFromString(`
   content: "";
   position: absolute;
   top: 50%;
-  left: -25px;
+  left: -15px;
+  margin-left: -10px;
   margin-top: -15px;
   border: 15px solid transparent;
   border-right: 15px solid #e0edff;
@@ -57,7 +64,7 @@ export default function ChatPanel() {
   });
 
   return (
-    <Box>
+    <Box className="base">
       {messageField && (
         <Box>
           <input
@@ -72,14 +79,17 @@ export default function ChatPanel() {
               }
             }}
             placeholder="発言をどうぞ"
-            width="320px"></input>
+            size={50}></input>
           {records &&
-            records.map((msg) => (
-              <div className="balloon">
-                <p>{msg.createdTime.toLocaleString()}</p>
-                <p>{msg.getCellValue(selectedMessageFieldId)}</p>
-              </div>
-            ))}
+            records
+              .slice()
+              .sort((a, b) => b.createdTime.getTime() - a.createdTime.getTime())
+              .map((msg) => (
+                <div className="balloon">
+                  <p>{msg.createdTime.toLocaleString()}</p>
+                  <p>{msg.getCellValue(selectedMessageFieldId)}</p>
+                </div>
+              ))}
         </Box>
       )}
     </Box>
