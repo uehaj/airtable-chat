@@ -50,6 +50,7 @@ export default function ChatPanel() {
   const {
     selectedTableId,
     selectedViewId,
+    selectedCreatedByFieldId,
     selectedMessageFieldId,
   } = useConfig();
   const base = useBase();
@@ -60,7 +61,7 @@ export default function ChatPanel() {
     : null;
 
   const records = useRecords(view, {
-    fields: [selectedMessageFieldId],
+    fields: [selectedCreatedByFieldId, selectedMessageFieldId],
   });
 
   return (
@@ -87,6 +88,9 @@ export default function ChatPanel() {
               .map((msg) => (
                 <div className="balloon">
                   <p>{msg.createdTime.toLocaleString()}</p>
+                  <p>
+                    {(msg.getCellValue(selectedCreatedByFieldId) as any).name}
+                  </p>
                   <p>{msg.getCellValue(selectedMessageFieldId)}</p>
                 </div>
               ))}
