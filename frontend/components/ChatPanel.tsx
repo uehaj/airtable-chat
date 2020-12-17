@@ -89,7 +89,7 @@ export default function ChatPanel() {
                 <div className="balloon">
                   <p>{msg.createdTime.toLocaleString()}</p>
                   <p>
-                    {(msg.getCellValue(selectedCreatedByFieldId) as any).name}
+                    {(msg.getCellValue(selectedCreatedByFieldId) as any)?.name}
                   </p>
                   <p>{msg.getCellValue(selectedMessageFieldId)}</p>
                 </div>
